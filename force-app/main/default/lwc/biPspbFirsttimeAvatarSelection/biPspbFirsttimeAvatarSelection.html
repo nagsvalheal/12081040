@@ -1,0 +1,39 @@
+<template>
+	<!-- This component purpose is First time Selecting the avatar -->
+	<div class="main" if:false={isLoading}>
+		<div>
+			<h3 class="avatarchoose">{chooseAvatar}</h3>
+		</div>
+		<div class="avatar-container">
+
+			<div class="avatar-row">
+				<template for:each={imageClass} for:item='avatar'>
+					<div key={avatar.dataid} class="image-column">
+						<button class={avatar.avatarclass} onclick={handleavatare} data-id={avatar.dataid}>
+							<img src={avatar.image} alt="Avatar" />
+						</button>
+						<div if:true={isLoading} class="spinner-container">
+                            <!-- Show spinner or loading message -->
+                            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                        </div>
+
+					</div>
+				</template>
+			</div>
+
+
+
+			<div class="buttondiv">
+				<button onclick={handleSave} class="custom-save-button">{next}</button>
+				<div class="line"></div>
+			</div>
+		</div>
+	</div>
+	<div if:true={isLoading} class="spinner-container">
+		<!-- Show spinner or loading message -->
+		<lightning-spinner alternative-text="Loading"></lightning-spinner>
+	</div>
+	<div class="spinner-wrapper" if:true={showSpinner}>
+        <div class="loader"></div>
+      </div>
+</template>
